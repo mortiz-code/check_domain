@@ -4,7 +4,7 @@ Check your DNS A, AAAA, SPF, DKIM, DMARC, and BIMI records easily and quickly. U
  
 ## Use Case Description
 
-When you need analyze a domain to check protocols like SPF, DKIM, DMARC and BIMI or registers A, AAAA. You need to do different queries. This app help you to do it with an unique line.
+When you want to analyze a domain to check protocols like SPF, DKIM, DMARC, and BIMI or registers A, AAAA you need to do different queries. This app helps you to do it with only one line.
 
 ## Installation
 
