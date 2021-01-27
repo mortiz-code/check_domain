@@ -1,8 +1,6 @@
 # check_domain
 
 Check your DNS A, AAAA, SPF, DKIM, DMARC, and BIMI records easily and quickly. Useful when you work with email solutions like Cisco Email Security Appliance / Cisco Cloud Email Security / Cisco Domain Protection.
-
-![add-image-here]()
  
 ## Use Case Description
 
@@ -10,20 +8,17 @@ When you need analyze a domain to check protocols like SPF, DKIM, DMARC and BIMI
 
 ## Installation
 
-First, create a virtual envoriment to have separate libraries.
+Clone the repository:
+
+    git clone https://github.com/mortiz-code/check_domain.git
+    cd check_domain
+
+Create virtual environment and activate it:
 
     python3 -m venv check_domain && source check_domain/bin/activate
-
-Second, clone the repository:
-
-    git clone ??????????
-
-Finally, install dependencies:
-    
-    cd check_domain
     pip install -r requirements.txt
 
-Now, you're ready to run the script.
+Now you're ready to run the script.
 
 
 ## Usage
