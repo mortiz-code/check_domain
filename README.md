@@ -26,8 +26,8 @@ Now you're ready to run the script.
 ## Usage
 
 You can run the app to check domains in two modes, using interactive steps or using arguments.
-For domain use "-d" and optional flags are "-s" for DKIM selector and -b for BIMI selector.
-By default, the app will try for DKIM check with selector 'domain' and if it fails, will try with 'selector1'. For BIMI proposes, it will use 'default' as the selector.
+By default, the app will try to check DKIM with selector 'domain' and if it fails, will try with 'selector1'. For BIMI verification, it will use 'default' as the selector.
+Both selectors can be defined manually. For domain use "-d" and set optional flags "-s" for DKIM selector and/or "-b" for BIMI selector. Another way is using the interactive mode.
 
 
     └─$ python check_domain.py -h
