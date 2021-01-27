@@ -1,10 +1,12 @@
 # check_domain
 
-Check your DNS A, AAAA, SPF, DKIM, DMARC, and BIMI records easily and quickly. Useful when you work with email solutions like Cisco Email Security Appliance / Cisco Cloud Email Security / Cisco Domain Protection.
- 
+Check DNS A, AAAA, SPF, DKIM, DMARC and BIMI records easily and quickly. 
+
+
 ## Use Case Description
 
-When you want to analyze a domain to check protocols like SPF, DKIM, DMARC, and BIMI or registers A, AAAA you need to do different queries. This app helps you to do it with only one line.
+When you want to analyze a domain to check protocols like SPF, DKIM, DMARC, and BIMI or registers A, AAAA you need to do different queries. This app helps you to do it with only one line. Useful when working with email solutions such as Cisco Email Security Appliance / Cisco Cloud Email Security / Cisco Domain Protection.
+
 
 ## Installation
 
