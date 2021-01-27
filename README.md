@@ -12,13 +12,19 @@ When you want to analyze a domain to check protocols like SPF, DKIM, DMARC, and 
 
 Clone the repository:
 
-    git clone https://github.com/mortiz-code/check_domain.git
-    cd check_domain
+```sh
+git clone https://github.com/mortiz-code/check_domain.git
+cd check_domain
+```
 
 Create virtual environment and activate it:
 
-    python3 -m venv check_domain && source check_domain/bin/activate
-    pip install -r requirements.txt
+***NOTE**: You may require to install the "python3-venv" package in your Linux.*
+
+```python
+python3 -m venv check_domain && source check_domain/bin/activate
+pip install -r requirements.txt
+```
 
 Now you're ready to run the script.
 
@@ -29,7 +35,7 @@ You can run the app to check domains in two modes, using interactive steps or us
 By default, the app will try to check DKIM with selector 'domain' and if it fails, will try with 'selector1'. For BIMI verification, it will use 'default' as the selector.
 Both selectors can be defined manually. For domain use "-d" and set optional flags "-s" for DKIM selector and/or "-b" for BIMI selector. Another way is using the interactive mode.
 
-
+```python
     └─$ python check_domain.py -h
     usage: check_domain.py [-h] [-d DOMAIN] [-s SELECTOR_DKIM] [-b SELECTOR_BIMI]
 
@@ -38,10 +44,11 @@ Both selectors can be defined manually. For domain use "-d" and set optional fla
     -d DOMAIN         Domain to be analyzed.
     -s SELECTOR_DKIM  Selector DKIM.
     -b SELECTOR_BIMI  Selector BIMI.
-
+```
 
 Option 1:
 
+```python
     └─$ python check_domain.py
     ==================================================
     Domain to be analyzed: bvstv.com
@@ -60,10 +67,11 @@ Option 1:
     [+] TXT Record : "duo_sso_verification=ntfsmAmvYMYMnwjgk6SpssPl5t7hZADsv9NCBLtCS7AnylaapsIfsFB9k6PItJVr"
     [+] DKIM Record : "v=DKIM1; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA13K6/iYmOCA+KH62zxDWdH+wn1X2ZOllAMZ/KZfvwZWKwhHQGGSU+eHCsyWbz0jJYiS1X/4C6NLya2GXrLAAkxVA8l74aPTN5yBeZP0iXBvZ1Yl47VW9C6ElRdlPyAimSiyOta5tDjSamJHGFxvwzJ5y2zh11qOYGQMCq8jEQAFX8+9CWx4t4HQ5uAwHrzXTPS3kNRn2" "H/ubJYnZmk943v51rBb2iM9DPymWMObfjIH7rgFJUb5j6+PGwNbFgw42cjbhEBd1YGBh+K4+/PBPSuOSG+miAApD+4Ki3icjt0KaOdrKaGiah+elSgElprDIIADlRHyNxsXPSLrsBXghrQIDAQAB;"
     [+] BIMI Record : "v=BIMI1; l=https://bvstv.com/img/bvs_bimi.svg; a=self;"
-
+```
 
 Option 2:
 
+```python
     └─$ python check_domain.py -d cisco.com -s iport
     ==================================================
     [+] A Record : 72.163.4.185
@@ -96,10 +104,11 @@ Option 2:
     [+] TXT Record : "atlassian-domain-verification=672RcADvt8BPqsb9gCN2ZC5DoTAhUT8abC1blYKQxi/MHMaGoA/BuvjFMaWRtgd7"
     [+] DKIM Record : "v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCctxGhJnvNpdcQLJM6a/0otvdpzFIJuo73OYFuw6/8bXcf8/p5JG/iME1r9fUlrNZs3kMn9ZdPYvTyRbyZ0UyMrsM3ZN2JAIop3M7sitqHgp8pbORFgQyZxq+L23I2cELq+qwtbanjWJzEPpVvrvbuz9QL8CUtS+V5N5ldq8L/lwIDAQAB;"
     [.] BIMI Record : Policy not is found in DNS record using selector 'default'. Check BIMI configuration or choose the manual selector option.
-
+```
 
 Another output example:
 
+```python
     └─$ python check_domain.py -d news.united.com -s united
     ==================================================
     [+] A Record : 12.130.158.199
@@ -110,7 +119,7 @@ Another output example:
     [+] TXT Record : "v=spf1 ip4:12.130.136.0/22 ip4:12.130.153.0/24 ip4:12.130.154.0/24 -all"
     [+] DKIM Record : "g=*; k=rsa; n=" "Contact" "postmaster@responsys.com" "with" "any" "questions" "concerning" "this" "signing" "; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/Vh/xq+sSRLhL5CRU1drFTGMXX/Q2KkWgl35hO4v6dTy5Qmxcuv5AwqxLiz9d0jBaxtuvYALjlGkxmk5MemgAOcCr97GlW7Cr11eLn87qdTmyE5LevnTXxVDMjIfQJt6OFzmw6Tp1t05NPWh0PbyUohZYt4qpcbiz9Kc3UB2IBwIDAQAB;"
     [+] BIMI Record : "v=BIMI1; f=svg; z=256x256; l=https://static.cdn.responsys.net/i2/responsysimages/content/united/UA-email-tailfin_256x256.svg"
-
+```
 
 
 ## Getting help
