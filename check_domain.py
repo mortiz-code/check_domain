@@ -11,7 +11,7 @@ from sys import exit, argv
 
 def main():
     """
-    main Run app with args.
+    main run app with args.
     """
     # Construct an argument parser
     all_args = ArgumentParser()
@@ -32,7 +32,7 @@ def main():
 
 def main2():
     """
-    main2 Ran app interactive.
+    main2 run app interactive.
     """
     print("=" * 50)
     try:
