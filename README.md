@@ -1,7 +1,8 @@
-# check_domain
+# check_domain 
 
-Check DNS A, AAAA, SPF, DKIM, DMARC and BIMI records easily and quickly. 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/mortiz-code/check_domain)
 
+Check DNS A, AAAA, SPF, DKIM, DMARC and BIMI records easily and quickly.
 
 ## Use Case Description
 
