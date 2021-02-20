@@ -1,8 +1,8 @@
 """
 Autor: Matias Ortiz.
 Contact: matias.ortiz@bvstv.com
-Date: 4/02/2021
-Version 2
+Date: 21/02/2021
+Version 3
 """
 
 import dns.resolver
@@ -27,16 +27,18 @@ def main():
     selector_dkim = args.Selector_DKIM
     selector_bimi = args.Selector_BIMI
     verbose = args.verbose
-    if verbose != None:
-        check_verbose(domain, selector_dkim, selector_bimi)
-    elif selector_dkim and selector_bimi != None:
-        check(domain, selector_dkim, selector_bimi)
-    elif selector_dkim and verbose != None:
-        check_verbose(domain, selector_dkim)
-    elif selector_bimi != None:
-        check(domain, selector_bimi)
-    else:
+    if selector_dkim == None and verbose == None and selector_bimi == None:
         check(domain)
+    elif selector_dkim != None and selector_bimi == None and verbose == None:
+        check(domain, selector_dkim, selector_bimi)
+    elif selector_bimi != None and selector_dkim == None and verbose == None:
+        check(domain, selector_dkim, selector_bimi)
+    elif verbose != None and selector_dkim == None and selector_bimi == None:
+        check_verbose(domain)
+    elif verbose != None and selector_dkim != None and selector_bimi == None:
+        check_verbose(domain, selector_dkim)
+    else:
+        check_verbose(domain, selector_dkim, selector_bimi)
 
 
 def main2():
@@ -156,6 +158,7 @@ def check(domain, selector_dkim=None, selector_bimi=None):
 
 
 def check_verbose(domain, selector_dkim=None, selector_bimi=None):
+
     """
     Check DNS Record verbose mode.
 
@@ -186,7 +189,7 @@ def check_verbose(domain, selector_dkim=None, selector_bimi=None):
             for val in result:
                 if "spf" in val.to_text():
                     records = val.to_text().split(" ")
-                    print("[+] SPF Record: ")
+                    print("[+] SPF Records: ")
                     for rec in range(len(records)):
                         count += 1
                         j = records[rec]
@@ -265,8 +268,15 @@ def check_verbose(domain, selector_dkim=None, selector_bimi=None):
     if selector_dkim != None:
         try:
             result = dns.resolver.resolve(f"{selector_dkim}._domainkey.{domain}", "TXT")
+            count = 0
             for val in result:
-                print("[+] DKIM Record :", val.to_text())
+                print("[+] DKIM Records:")
+                records = val.to_text().split(" ")
+                for record in records:
+                    count += 1
+                    record = record.replace('"', "")
+                    record = record.replace(" ", "")
+                    print(f"{count}) {record}")
         except:
             print(
                 f"[.] DKIM Record : Selector '{selector_dkim}' not found in DNS record. Check DKIM configuration."
@@ -274,13 +284,27 @@ def check_verbose(domain, selector_dkim=None, selector_bimi=None):
     else:
         try:
             result = dns.resolver.resolve(f"{selector[0]}._domainkey.{domain}", "TXT")
+            count = 0
             for val in result:
-                print("[+] DKIM Record :", val.to_text())
+                print("[+] DKIM Records:")
+                records = val.to_text().split(" ")
+                for record in records:
+                    count += 1
+                    record = record.replace('"', "")
+                    record = record.replace(" ", "")
+                    print(f"{count}) {record}")
         except:
             try:
                 result = dns.resolver.resolve(f"selector1._domainkey.{domain}", "TXT")
+                count = 0
                 for val in result:
-                    print("[+] DKIM Record :", val.to_text())
+                    print("[+] DKIM Records:")
+                    records = val.to_text().split(" ")
+                    for record in records:
+                        count += 1
+                        record = record.replace('"', "")
+                        record = record.replace(" ", "")
+                        print(f"{count}) {record}")
             except:
                 print(
                     f"[.] DKIM Record : Selector '{selector[0]}' or 'selector1' is not found in the DNS records. Check DKIM configuration or choose the manual selector option."
@@ -291,7 +315,7 @@ def check_verbose(domain, selector_dkim=None, selector_bimi=None):
         result = dns.resolver.resolve(f"_dmarc.{domain}", "TXT")
         count = 0
         for val in result:
-            print("[+] DMARC Record :")
+            print("[+] DMARC Records:")
             records = val.to_text().split(" ")
             for record in records:
                 count += 1
@@ -321,8 +345,15 @@ def check_verbose(domain, selector_dkim=None, selector_bimi=None):
     if selector_bimi != None:
         try:
             result = dns.resolver.resolve(f"{selector_bimi}._bimi.{domain}", "TXT")
+            count = 0
             for val in result:
-                print("[+] BIMI Record :", val.to_text())
+                print("[+] BIMI Records:")
+                records = val.to_text().split(" ")
+                for record in records:
+                    count += 1
+                    record = record.replace('"', "")
+                    record = record.replace(" ", "")
+                    print(f"{count}) {record}")
         except:
             print(
                 f"[.] BIMI Record : Policy not found in DNS record using selector '{selector_bimi}'. Check BIMI configuration."
@@ -330,8 +361,15 @@ def check_verbose(domain, selector_dkim=None, selector_bimi=None):
     else:
         try:
             result = dns.resolver.resolve(f"default._bimi.{domain}", "TXT")
+            count = 0
             for val in result:
-                print("[+] BIMI Record :", val.to_text())
+                print("[+] BIMI Records:")
+                records = val.to_text().split(" ")
+                for record in records:
+                    count += 1
+                    record = record.replace('"', "")
+                    record = record.replace(" ", "")
+                    print(f"{count}) {record}")
         except:
             print(
                 f"[.] BIMI Record : Policy not is found in DNS record using selector 'default'. Check BIMI configuration or choose the manual selector option."
